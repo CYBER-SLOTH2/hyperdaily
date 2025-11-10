@@ -1,10 +1,33 @@
 ---
-export const prerender = true;
+import Layout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+// Fetch latest posts
+const posts = (await getCollection("blog"))
+  .sort((a, b) => b.data.date - a.data.date)
+  .slice(0, 12); // Show latest 12 posts on homepage
 ---
 
-<html>
-  <head>
-    <meta http-equiv="refresh" content="0; url=/blog/" />
-    <script>window.location.href="/blog/";</script>
-  </head>
-</html>
+<Layout title="Hyperdaily – Daily Trending Blogs">
+  <section class="container mx-auto py-16 text-center">
+    <h1 class="text-4xl font-bold mb-4">Hyperdaily</h1>
+    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+      Stay updated with what's trending across the internet, tech, business, lifestyle, culture, and everything buzzing today.
+    </p>
+  </section>
+
+  <section class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
+    {posts.map((post) => (
+      <a
+        href={`/blog/${post.slug}/`}
+        class="border rounded-lg p-5 hover:shadow-lg transition block"
+      >
+        <h2 class="text-xl font-semibold mb-2">{post.data.title}</h2>
+        <p class="text-sm text-gray-600 line-clamp-3">{post.data.excerpt || post.data.description}</p>
+        <p class="text-xs text-gray-400 mt-3">
+          {new Date(post.data.date).toLocaleDateString()}
+        </p>
+      </a>
+    ))}
+  </section>
+</Layout>
