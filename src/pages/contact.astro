@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/BaseLayout.astro";
+---
+
+<Layout title="Contact - HiFi Studio & Mobile">
+  <section class="container mx-auto py-10 prose">
+    <h1>Contact Us</h1>
+    <p>If you have questions, feedback, or collaboration ideas — we’d love to hear from you.</p>
+
+    <form method="POST" action="https://formspree.io/f/your-id">
+      <label>Name</label>
+      <input type="text" name="name" required />
+
+      <label>Email</label>
+      <input type="email" name="email" required />
+
+      <label>Message</label>
+      <textarea name="message" rows="5" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+</Layout>
