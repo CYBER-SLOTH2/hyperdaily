@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tech & World News Blog</title>
+    <link>https://yourdomain.com/</link>
+    <description>Daily tech and world news summaries</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 29 Oct 2025 08:42:47 GMT</lastBuildDate>
+    <atom:link href="https://yourdomain.com/rss.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Daily Tech & World News Roundup - October 29, 2025</title>
+      <link>https://yourdomain.com/posts/daily-tech-world-news-roundup-october-29-2025.html</link>
+      <description>```html The Ultimate Guide to Foldable Phones 2025: Reviews, Durability & What's Next body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; li...</description>
+      <author>HiFi Studio And Mobile </author>
+      <category>News</category>
+      <pubDate>Wed, 29 Oct 2025 08:42:47 GMT</pubDate>
+      <guid>https://yourdomain.com/posts/daily-tech-world-news-roundup-october-29-2025.html</guid>
+    </item>
+  </channel>
+</rss>
