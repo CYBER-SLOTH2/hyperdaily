@@ -2,22 +2,45 @@
 import Layout from "../layouts/BaseLayout.astro";
 ---
 
-<Layout title="Contact - HiFi Studio & Mobile">
+<Layout title="Contact - Hyperdaily">
   <section class="container mx-auto py-10 prose">
-    <h1>Contact Us</h1>
-    <p>If you have questions, feedback, or collaboration ideas — we’d love to hear from you.</p>
+    <h1>Contact Hyperdaily</h1>
+    <p>
+      Have suggestions, questions, or want to collaborate with us?  
+      We’d love to connect — drop us a message below.
+    </p>
 
-    <form method="POST" action="https://formspree.io/f/your-id">
-      <label>Name</label>
-      <input type="text" name="name" required />
+    <form
+      method="POST"
+      action="https://formspree.io/f/your-id"
+      class="flex flex-col gap-4 max-w-lg"
+    >
+      <label>
+        <span>Name</span>
+        <input type="text" name="name" required class="border p-2 w-full rounded" />
+      </label>
 
-      <label>Email</label>
-      <input type="email" name="email" required />
+      <label>
+        <span>Email</span>
+        <input type="email" name="email" required class="border p-2 w-full rounded" />
+      </label>
 
-      <label>Message</label>
-      <textarea name="message" rows="5" required></textarea>
+      <label>
+        <span>Message</span>
+        <textarea
+          name="message"
+          rows="5"
+          required
+          class="border p-2 w-full rounded"
+        ></textarea>
+      </label>
 
-      <button type="submit">Send Message</button>
+      <button
+        type="submit"
+        class="bg-black text-white px-4 py-2 rounded hover:opacity-80 transition"
+      >
+        Send Message
+      </button>
     </form>
   </section>
 </Layout>
