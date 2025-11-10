@@ -1,11 +1,12 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
+import { parseISO, format } from 'date-fns';  // Optional: Using date-fns for date parsing and formatting
 
-// Fetch latest posts
+// Fetch latest posts from the "blog" collection
 const posts = (await getCollection("blog"))
-  .sort((a, b) => b.data.date - a.data.date)
-  .slice(0, 12); // Show latest 12 posts on homepage
+  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date))  // Sort posts by date, latest first
+  .slice(0, 12); // Show the latest 12 posts on the homepage
 ---
 
 <Layout title="Hyperdaily – Daily Trending Blogs">
@@ -24,8 +25,10 @@ const posts = (await getCollection("blog"))
       >
         <h2 class="text-xl font-semibold mb-2">{post.data.title}</h2>
         <p class="text-sm text-gray-600 line-clamp-3">{post.data.excerpt || post.data.description}</p>
+
         <p class="text-xs text-gray-400 mt-3">
-          {new Date(post.data.date).toLocaleDateString()}
+          {/* Format the post date using date-fns */}
+          {format(parseISO(post.data.date), 'MMMM dd, yyyy')}
         </p>
       </a>
     ))}
