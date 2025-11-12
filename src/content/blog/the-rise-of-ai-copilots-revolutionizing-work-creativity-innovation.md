@@ -1,4 +1,3 @@
-```yaml
 ---
 title: "The Rise of AI Copilots: Revolutionizing Work, Boosting Creativity & Driving Innovation"
 description: "Explore how AI Copilots are transforming workplaces, enhancing creativity, and driving innovation across industries, shaping the future of human-AI collaboration."
