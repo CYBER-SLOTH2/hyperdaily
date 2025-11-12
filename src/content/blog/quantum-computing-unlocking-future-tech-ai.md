@@ -1,4 +1,3 @@
-```
 ---
 title: "Quantum Computing: Unlocking the Future of Tech & AI"
 description: "Explore quantum computing's revolutionary potential, from how it works to its impact on AI, cybersecurity, and industries, shaping tomorrow's technology landscape."
