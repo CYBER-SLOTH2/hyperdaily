@@ -6,19 +6,38 @@ import Footer from "../components/Footer.astro";
 const { title } = Astro.props;
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
     <BaseHead title={title} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8422747018156672"
-     crossorigin="anonymous"></script>  </head>
+      crossorigin="anonymous"></script>
+  </head>
 
   <body class="min-h-screen flex flex-col bg-white text-gray-900">
+    <!-- ✅ Header -->
     <Header />
 
-    <main class="flex-1 w-full max-w-4xl mx-auto px-4 py-8">
+    <!-- ✅ Main content -->
+    <main class="flex-1 w-full max-w-5xl mx-auto px-4 py-8">
       <slot />
     </main>
 
+    <!-- ✅ Footer -->
     <Footer />
+
+    <!-- ✅ Mobile Menu Toggle Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.querySelector('.internal-links');
+        if (toggle && menu) {
+          toggle.addEventListener('click', () => {
+            menu.classList.toggle('show');
+          });
+        }
+      });
+    </script>
   </body>
 </html>
