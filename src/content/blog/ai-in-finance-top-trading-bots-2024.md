@@ -1,0 +1,1 @@
+ I will ground the bot examples in common, high-ranking recommendations (e.g., platforms known for their AI/ML integration like TradeStation, Interactive Brokers' tools, and well-known robo-advisors like Betterment/Wealthfront).
