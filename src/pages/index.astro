@@ -1,48 +1,64 @@
 ---
-import Layout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-// Get latest blog posts
 const posts = (await getCollection("blog"))
-  .sort((a, b) => new Date(b.data.date ?? b.data.pubDate) - new Date(a.data.date ?? a.data.pubDate))
-  .slice(0, 12);
-
-// Safe date formatter
-function formatDate(data) {
-  const date = data.date ?? data.pubDate;
-  if (!date) return "";
-  return new Date(date).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric"
-  });
-}
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.pubDate - a.data.pubDate);
 ---
 
-<Layout title="Hyperdaily – Daily Trending Blogs">
-  <section class="container mx-auto py-16 text-center">
-    <h1 class="text-4xl font-bold mb-4">Hyperdaily</h1>
-    <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-      Stay updated with what's trending across the internet, tech, business, lifestyle, culture, and everything buzzing today.
-    </p>
-  </section>
+<BaseLayout
+  title="AI, Automation & Technology Guides"
+  description="Practical guides on AI, automation, and modern technology to help you work smarter and stay updated."
+>
+  <main class="container">
+    
+    <!-- HERO -->
+    <header>
+      <h1>AI, Automation & Technology Guides</h1>
+      <p>
+        Practical, easy-to-understand guides on artificial intelligence,
+        automation workflows, productivity tools, and modern technology.
+      </p>
+    </header>
 
-  <section class="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
-    {posts.map((post) => (
-      <a
-        href={`/blog/${post.id}/`}
-        class="border rounded-lg p-5 hover:shadow-lg transition block"
-      >
-        <h2 class="text-xl font-semibold mb-2">{post.data.title}</h2>
+    <!-- LATEST POSTS -->
+    <section>
+      <h2>Latest Articles</h2>
+      <ul>
+        {posts.slice(0, 10).map(post => (
+          <li>
+            <a href={`/blog/${post.slug}/`}>
+              {post.data.title}
+            </a>
+            <p>
+              {post.data.description}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </section>
 
-        <p class="text-sm text-gray-600 line-clamp-3">
-          {post.data.excerpt || post.data.description}
-        </p>
+    <!-- TOPICAL AUTHORITY BLOCK -->
+    <section>
+      <h2>Popular Topics</h2>
+      <ul>
+        <li><a href="/blog/ai-automation-guide/">AI Automation</a></li>
+        <li><a href="/blog/n8n-ai-workflows/">n8n Workflows</a></li>
+        <li><a href="/blog/best-ai-tools/">AI Tools</a></li>
+        <li><a href="/blog/workflow-automation/">Workflow Automation</a></li>
+      </ul>
+    </section>
 
-        <p class="text-xs text-gray-400 mt-3">
-          {formatDate(post.data)}
-        </p>
-      </a>
-    ))}
-  </section>
-</Layout>
+    <!-- TRUST SIGNAL -->
+    <section>
+      <h2>Why Trust This Site?</h2>
+      <p>
+        All content is written for educational purposes, reviewed for clarity,
+        and focused on real-world use cases. We prioritize accuracy,
+        transparency, and user value over hype.
+      </p>
+    </section>
+
+  </main>
+</BaseLayout>
