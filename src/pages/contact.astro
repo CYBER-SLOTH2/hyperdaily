@@ -1,46 +1,44 @@
 ---
-import Layout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<Layout title="Contact - Hyperdaily">
-  <section class="container mx-auto py-10 prose">
-    <h1>Contact Hyperdaily</h1>
+<BaseLayout
+  title="Contact Us"
+  description="Contact us for questions, feedback, or support related to our content and website."
+>
+  <main class="container">
+    <h1>Contact Us</h1>
+
     <p>
-      Have suggestions, questions, or want to collaborate with us?  
-      We’d love to connect — drop us a message below.
+      We welcome questions, feedback, and inquiries related to the content
+      published on this website. If you need to reach us, please use the contact
+      details below.
     </p>
 
-    <form
-      method="POST"
-      action="https://formspree.io/f/your-id"
-      class="flex flex-col gap-4 max-w-lg"
-    >
-      <label>
-        <span>Name</span>
-        <input type="text" name="name" required class="border p-2 w-full rounded" />
-      </label>
+    <h2>Email</h2>
+    <p>
+      You can contact us via email at:
+      <br />
+      <strong>contact@hyperdaily.one</strong>
+    </p>
 
-      <label>
-        <span>Email</span>
-        <input type="email" name="email" required class="border p-2 w-full rounded" />
-      </label>
+    <h2>Content & Feedback</h2>
+    <p>
+      If you have suggestions, corrections, or feedback regarding any article,
+      feel free to reach out. We value reader input and aim to improve the
+      quality of our content continuously.
+    </p>
 
-      <label>
-        <span>Message</span>
-        <textarea
-          name="message"
-          rows="5"
-          required
-          class="border p-2 w-full rounded"
-        ></textarea>
-      </label>
+    <h2>Advertising & Partnerships</h2>
+    <p>
+      For advertising-related questions or partnership inquiries, please
+      contact us through the same email address. We review all messages and
+      respond as soon as possible.
+    </p>
 
-      <button
-        type="submit"
-        class="bg-black text-white px-4 py-2 rounded hover:opacity-80 transition"
-      >
-        Send Message
-      </button>
-    </form>
-  </section>
-</Layout>
+    <h2>Response Time</h2>
+    <p>
+      We typically respond to inquiries within 24–72 hours on business days.
+    </p>
+  </main>
+</BaseLayout>

@@ -1,81 +1,93 @@
 ---
-import Layout from "../layouts/BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<Layout title="Privacy Policy – Hyperdaily">
-  <section class="prose mx-auto py-10">
+<BaseLayout
+  title="Privacy Policy"
+  description="Privacy Policy explaining how we collect, use, and protect user information, including Google AdSense advertising."
+>
+  <main class="container">
     <h1>Privacy Policy</h1>
-    <p>Last Updated: {new Date().toLocaleDateString()}</p>
 
     <p>
-      Hyperdaily (“we”, “our”, or “us”) is a daily trending blog that shares news,
-      ideas, opinions, and insights on various topics including internet culture,
-      business, lifestyle, and technology.
-      This Privacy Policy explains how we collect, use, and protect your data
-      when you visit and interact with our website.
+      This Privacy Policy document explains how information is collected, used,
+      and disclosed when you visit this website. By using this website, you agree
+      to the terms of this Privacy Policy.
     </p>
 
     <h2>Information We Collect</h2>
-
-    <h3>1. Information You Provide</h3>
-    <ul>
-      <li>Name (if submitted through forms)</li>
-      <li>Email Address (for contact or newsletter forms)</li>
-      <li>Messages or inquiries you submit</li>
-    </ul>
-
-    <h3>2. Automatic Usage Data</h3>
-    <p>When you browse our site, some information is collected automatically:</p>
-    <ul>
-      <li>IP Address</li>
-      <li>Browser type & device type</li>
-      <li>Pages visited & time spent</li>
-      <li>General location (city/region)</li>
-    </ul>
-
-    <h3>3. Cookies & Third-Party Analytics</h3>
-    <p>Hyperdaily uses cookies to improve user experience. We also use:</p>
-    <ul>
-      <li><strong>Google Analytics</strong> for traffic & performance insights</li>
-      <li><strong>Google AdSense</strong> for displaying interest-based ads</li>
-    </ul>
-
     <p>
-      Google and other advertisers may use cookies to show personalized ads.
-      You may opt-out of personalized ads here:
-      <br />
-      <a href="https://www.google.com/settings/ads">https://www.google.com/settings/ads</a>
+      We do not collect personal information such as names, addresses, or phone
+      numbers unless you voluntarily provide it through contact forms or email
+      communication.
     </p>
 
-    <h2>How We Use Your Information</h2>
-    <ul>
-      <li>To respond to inquiries</li>
-      <li>To improve site content and user experience</li>
-      <li>To show relevant and non-intrusive advertisements</li>
-      <li>To analyze trends and understand audience interests</li>
-    </ul>
-
-    <h2>Data Sharing</h2>
     <p>
-      We <strong>do not sell</strong> your personal data.
-      However, we share limited, non-identifiable usage data with:
+      Like many websites, we may collect non-personal information automatically,
+      including browser type, device type, operating system, pages visited, and
+      referring URLs. This data is used only to analyze trends and improve user
+      experience.
     </p>
-    <ul>
-      <li>Google (Analytics & AdSense)</li>
-      <li>Form service providers (if you use our contact form)</li>
-    </ul>
 
-    <h2>Your Rights</h2>
-    <ul>
-      <li>Request deletion of your submitted information</li>
-      <li>Request to stop future email contact</li>
-      <li>Clear browser cookies to reset tracking preferences</li>
-    </ul>
-
-    <h2>Contact Us</h2>
+    <h2>Cookies and Web Beacons</h2>
     <p>
-      For privacy concerns, requests, or general questions, you can reach us at:
-      <br /><strong>Email:</strong> contact@hyperdaily.one
+      This website uses cookies to store information about visitors’ preferences
+      and to optimize the experience by customizing our web page content based on
+      visitors’ browser type or other information.
     </p>
-  </section>
-</Layout>
+
+    <h2>Google AdSense</h2>
+    <p>
+      We use Google AdSense to display advertisements. Google is a third-party
+      vendor that uses cookies, including the DoubleClick cookie, to serve ads to
+      users based on their visits to this and other websites.
+    </p>
+
+    <p>
+      Google’s use of advertising cookies enables it and its partners to serve
+      ads to users based on their browsing activity. Users may opt out of
+      personalized advertising by visiting Google Ads Settings.
+    </p>
+
+    <h2>Third-Party Privacy Policies</h2>
+    <p>
+      This Privacy Policy does not apply to other advertisers or websites. We
+      advise you to consult the respective Privacy Policies of third-party ad
+      servers or websites for more detailed information about their practices
+      and instructions on how to opt out of certain options.
+    </p>
+
+    <h2>CCPA Privacy Rights (Do Not Sell My Personal Information)</h2>
+    <p>
+      Under the CCPA, California consumers have the right to request disclosure
+      of data collected and to request deletion of personal data. If you wish to
+      exercise these rights, please contact us.
+    </p>
+
+    <h2>GDPR Data Protection Rights</h2>
+    <p>
+      Every user is entitled to the right to access, rectification, erasure,
+      restriction of processing, and objection to processing of their personal
+      data. If you wish to exercise any of these rights, please contact us.
+    </p>
+
+    <h2>Children’s Information</h2>
+    <p>
+      We do not knowingly collect any Personal Identifiable Information from
+      children under the age of 13. If you believe that your child has provided
+      personal information on this website, please contact us immediately and we
+      will promptly remove such information from our records.
+    </p>
+
+    <h2>Consent</h2>
+    <p>
+      By using our website, you hereby consent to our Privacy Policy and agree to
+      its terms.
+    </p>
+
+    <p>
+      If you have any questions about this Privacy Policy, please contact us via
+      the contact page.
+    </p>
+  </main>
+</BaseLayout>
