@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-// Fetch all published posts
+// Fetch published posts
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.pubDate - a.data.pubDate);
@@ -14,16 +14,22 @@ const latestPosts = posts.slice(4, 14);
 ---
 
 <BaseLayout
-  title="AI, Automation & Technology Blog"
-  description="Clear, practical guides on AI, automation, n8n workflows, productivity tools, and modern technology."
+  title="AI, Automation & Technology Magazine"
+  description="Latest guides, tutorials, and insights on AI, automation, productivity tools, and modern technology."
 >
   <main class="container">
 
-    <!-- HERO ARTICLE -->
+    <!-- HERO STORY -->
     {heroPost && (
       <section>
-        <h1>{heroPost.data.title}</h1>
+        <h1>
+          <a href={`/blog/${heroPost.slug}/`}>
+            {heroPost.data.title}
+          </a>
+        </h1>
+
         <p>{heroPost.data.description}</p>
+
         <p>
           <a href={`/blog/${heroPost.slug}/`}>
             Read full article →
@@ -32,10 +38,10 @@ const latestPosts = posts.slice(4, 14);
       </section>
     )}
 
-    <!-- FEATURED ARTICLES -->
+    <!-- FEATURED STORIES -->
     {featuredPosts.length > 0 && (
       <section>
-        <h2>Featured Articles</h2>
+        <h2>Featured</h2>
         <ul>
           {featuredPosts.map(post => (
             <li>
@@ -48,6 +54,11 @@ const latestPosts = posts.slice(4, 14);
         </ul>
       </section>
     )}
+
+    <!-- ADSENSE SAFE SLOT (ENABLE ONLY AFTER APPROVAL) -->
+    {/*
+    <AdSlot />
+    */}
 
     <!-- LATEST ARTICLES -->
     <section>
@@ -63,13 +74,13 @@ const latestPosts = posts.slice(4, 14);
       </ul>
     </section>
 
-    <!-- TRUST / EDITORIAL -->
+    <!-- EDITORIAL / TRUST -->
     <section>
-      <h2>About This Blog</h2>
+      <h2>Editorial Policy</h2>
       <p>
-        This website publishes educational and informational content focused on
-        artificial intelligence, automation, and technology. Articles are written
-        to be clear, practical, and useful for real-world applications.
+        This publication focuses on educational and informational content related
+        to artificial intelligence, automation, and technology. Articles are
+        written to be clear, practical, and useful for real-world applications.
       </p>
     </section>
 
