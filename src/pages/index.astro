@@ -2,28 +2,28 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-// Fetch published posts
+// Get all published blog posts
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.pubDate - a.data.pubDate);
 
-// Sections
+// Dynamic sections
 const heroPost = posts[0];
 const featuredPosts = posts.slice(1, 4);
 const latestPosts = posts.slice(4, 14);
 ---
 
 <BaseLayout
-  title="AI, Automation & Technology Magazine"
-  description="Latest guides, tutorials, and insights on AI, automation, productivity tools, and modern technology."
+  title="AI, Automation & Technology Guides"
+  description="Clear, educational guides on AI, automation, n8n workflows, productivity tools, and modern technology."
 >
   <main class="container">
 
-    <!-- HERO STORY -->
+    <!-- HERO ARTICLE -->
     {heroPost && (
       <section>
         <h1>
-          <a href={`/blog/${heroPost.slug}/`}>
+          <a href={`/blog/${heroPost.id}/`}>
             {heroPost.data.title}
           </a>
         </h1>
@@ -31,21 +31,21 @@ const latestPosts = posts.slice(4, 14);
         <p>{heroPost.data.description}</p>
 
         <p>
-          <a href={`/blog/${heroPost.slug}/`}>
+          <a href={`/blog/${heroPost.id}/`}>
             Read full article →
           </a>
         </p>
       </section>
     )}
 
-    <!-- FEATURED STORIES -->
+    <!-- FEATURED ARTICLES -->
     {featuredPosts.length > 0 && (
       <section>
-        <h2>Featured</h2>
+        <h2>Featured Articles</h2>
         <ul>
           {featuredPosts.map(post => (
             <li>
-              <a href={`/blog/${post.slug}/`}>
+              <a href={`/blog/${post.id}/`}>
                 <strong>{post.data.title}</strong>
               </a>
               <p>{post.data.description}</p>
@@ -55,10 +55,7 @@ const latestPosts = posts.slice(4, 14);
       </section>
     )}
 
-    <!-- ADSENSE SAFE SLOT (ENABLE ONLY AFTER APPROVAL) -->
-    {/*
-    <AdSlot />
-    */}
+    <!-- 🚫 NO ADS HERE DURING REVIEW -->
 
     <!-- LATEST ARTICLES -->
     <section>
@@ -66,7 +63,7 @@ const latestPosts = posts.slice(4, 14);
       <ul>
         {latestPosts.map(post => (
           <li>
-            <a href={`/blog/${post.slug}/`}>
+            <a href={`/blog/${post.id}/`}>
               {post.data.title}
             </a>
           </li>
@@ -74,13 +71,14 @@ const latestPosts = posts.slice(4, 14);
       </ul>
     </section>
 
-    <!-- EDITORIAL / TRUST -->
+    <!-- TRUST / EDITORIAL BLOCK -->
     <section>
-      <h2>Editorial Policy</h2>
+      <h2>About This Website</h2>
       <p>
-        This publication focuses on educational and informational content related
-        to artificial intelligence, automation, and technology. Articles are
-        written to be clear, practical, and useful for real-world applications.
+        This website publishes educational and informational content focused on
+        artificial intelligence, automation, and technology. Articles are written
+        to help readers understand tools, concepts, and workflows in a clear and
+        practical way.
       </p>
     </section>
 
