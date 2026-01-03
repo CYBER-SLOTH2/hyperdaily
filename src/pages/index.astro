@@ -2,55 +2,90 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-const posts = (await getCollection("blog"))
+// Get all published posts
+const allPosts = (await getCollection("blog"))
   .filter(p => !p.data.draft)
   .sort((a, b) => b.data.pubDate - a.data.pubDate);
+
+// Latest posts
+const latestPosts = allPosts.slice(0, 8);
+
+// Popular posts (manual or later via analytics)
+const popularPosts = allPosts.slice(0, 5);
+
+// Categories inferred from slugs (simple + fast)
+const categories = [
+  { name: "AI Automation", slug: "ai-automation" },
+  { name: "n8n Workflows", slug: "n8n" },
+  { name: "AI Tools", slug: "ai-tools" },
+  { name: "Productivity", slug: "productivity" }
+];
 ---
 
 <BaseLayout
   title="AI, Automation & Technology Guides"
-  description="Practical guides on AI, automation, and modern technology to help you work smarter and stay updated."
+  description="SEO-first guides on AI, automation, n8n workflows, productivity tools, and modern technology."
 >
   <main class="container">
-    
+
     <!-- HERO -->
     <header>
       <h1>AI, Automation & Technology Guides</h1>
       <p>
         Practical, easy-to-understand guides on artificial intelligence,
-        automation workflows, productivity tools, and modern technology.
+        workflow automation, productivity tools, and modern technology.
       </p>
     </header>
 
-    <!-- LATEST POSTS -->
+    <!-- LATEST ARTICLES -->
     <section>
       <h2>Latest Articles</h2>
       <ul>
-        {posts.slice(0, 10).map(post => (
+        {latestPosts.map(post => (
           <li>
             <a href={`/blog/${post.slug}/`}>
               {post.data.title}
             </a>
-            <p>
-              {post.data.description}
-            </p>
+            <p>{post.data.description}</p>
           </li>
         ))}
       </ul>
     </section>
 
-    <!-- TOPICAL AUTHORITY BLOCK -->
+    <!-- ADSENSE SAFE SLOT (ENABLE ONLY AFTER APPROVAL) -->
+    {/*
+    <AdSlot />
+    */}
+
+    <!-- POPULAR / EVERGREEN -->
     <section>
-      <h2>Popular Topics</h2>
+      <h2>Popular Guides</h2>
       <ul>
-        <li><a href="/blog/ai-automation-guide/">AI Automation</a></li>
-        <li><a href="/blog/n8n-ai-workflows/">n8n Workflows</a></li>
-        <li><a href="/blog/best-ai-tools/">AI Tools</a></li>
-        <li><a href="/blog/workflow-automation/">Workflow Automation</a></li>
+        {popularPosts.map(post => (
+          <li>
+            <a href={`/blog/${post.slug}/`}>
+              {post.data.title}
+            </a>
+          </li>
+        ))}
       </ul>
     </section>
 
-    <!-- TRUST SIGNAL -->
+    <!-- TOPICS (INTERNAL LINKING BOOST) -->
+    <section>
+      <h2>Browse Topics</h2>
+      <ul>
+        {categories.map(cat => (
+          <li>
+            <a href={`/blog/${cat.slug}/`}>
+              {cat.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- TRUST SIGNAL (VERY IMPORTANT FOR ADSENSE) -->
     <section>
       <h2>Why Trust This Site?</h2>
       <p>
