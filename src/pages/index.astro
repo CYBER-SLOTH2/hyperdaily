@@ -2,24 +2,24 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-// Get all published blog posts
+// Fetch all published blog posts
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.pubDate - a.data.pubDate);
 
-// Dynamic sections
+// Sections
 const heroPost = posts[0];
 const featuredPosts = posts.slice(1, 4);
 const latestPosts = posts.slice(4, 14);
 ---
 
 <BaseLayout
-  title="AI, Automation & Technology Guides"
+  title="AI, Automation & Technology Blog"
   description="Clear, educational guides on AI, automation, n8n workflows, productivity tools, and modern technology."
 >
   <main class="container">
 
-    <!-- HERO ARTICLE -->
+    <!-- HERO POST -->
     {heroPost && (
       <section>
         <h1>
@@ -38,7 +38,7 @@ const latestPosts = posts.slice(4, 14);
       </section>
     )}
 
-    <!-- FEATURED ARTICLES -->
+    <!-- FEATURED POSTS -->
     {featuredPosts.length > 0 && (
       <section>
         <h2>Featured Articles</h2>
@@ -55,9 +55,9 @@ const latestPosts = posts.slice(4, 14);
       </section>
     )}
 
-    <!-- 🚫 NO ADS HERE DURING REVIEW -->
+    <!-- NO ADS HERE DURING ADSENSE REVIEW -->
 
-    <!-- LATEST ARTICLES -->
+    <!-- LATEST POSTS -->
     <section>
       <h2>Latest Articles</h2>
       <ul>
@@ -71,13 +71,13 @@ const latestPosts = posts.slice(4, 14);
       </ul>
     </section>
 
-    <!-- TRUST / EDITORIAL BLOCK -->
+    <!-- TRUST / EDITORIAL -->
     <section>
-      <h2>About This Website</h2>
+      <h2>About This Blog</h2>
       <p>
         This website publishes educational and informational content focused on
         artificial intelligence, automation, and technology. Articles are written
-        to help readers understand tools, concepts, and workflows in a clear and
+        to help readers understand tools, workflows, and concepts in a clear and
         practical way.
       </p>
     </section>
