@@ -1,99 +1,23 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
-// Get all published posts
-const allPosts = (await getCollection("blog"))
+const posts = (await getCollection("blog"))
   .filter(p => !p.data.draft)
-  .sort((a, b) => b.data.pubDate - a.data.pubDate);
-
-// Latest posts
-const latestPosts = allPosts.slice(0, 8);
-
-// Popular posts (manual or later via analytics)
-const popularPosts = allPosts.slice(0, 5);
-
-// Categories inferred from slugs (simple + fast)
-const categories = [
-  { name: "AI Automation", slug: "ai-automation" },
-  { name: "n8n Workflows", slug: "n8n" },
-  { name: "AI Tools", slug: "ai-tools" },
-  { name: "Productivity", slug: "productivity" }
-];
+  .slice(0, 6);
 ---
 
-<BaseLayout
-  title="AI, Automation & Technology Guides"
-  description="SEO-first guides on AI, automation, n8n workflows, productivity tools, and modern technology."
->
-  <main class="container">
+<section class="max-w-6xl mx-auto px-4 py-12">
+  <h1 class="text-3xl font-bold mb-8">Latest Articles</h1>
 
-    <!-- HERO -->
-    <header>
-      <h1>AI, Automation & Technology Guides</h1>
-      <p>
-        Practical, easy-to-understand guides on artificial intelligence,
-        workflow automation, productivity tools, and modern technology.
-      </p>
-    </header>
-
-    <!-- LATEST ARTICLES -->
-    <section>
-      <h2>Latest Articles</h2>
-      <ul>
-        {latestPosts.map(post => (
-          <li>
-            <a href={`/blog/${post.slug}/`}>
-              {post.data.title}
-            </a>
-            <p>{post.data.description}</p>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <!-- ADSENSE SAFE SLOT (ENABLE ONLY AFTER APPROVAL) -->
-    {/*
-    <AdSlot />
-    */}
-
-    <!-- POPULAR / EVERGREEN -->
-    <section>
-      <h2>Popular Guides</h2>
-      <ul>
-        {popularPosts.map(post => (
-          <li>
-            <a href={`/blog/${post.slug}/`}>
-              {post.data.title}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <!-- TOPICS (INTERNAL LINKING BOOST) -->
-    <section>
-      <h2>Browse Topics</h2>
-      <ul>
-        {categories.map(cat => (
-          <li>
-            <a href={`/blog/${cat.slug}/`}>
-              {cat.name}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <!-- TRUST SIGNAL (VERY IMPORTANT FOR ADSENSE) -->
-    <section>
-      <h2>Why Trust This Site?</h2>
-      <p>
-        All content is written for educational purposes, reviewed for clarity,
-        and focused on real-world use cases. We prioritize accuracy,
-        transparency, and user value over hype.
-      </p>
-    </section>
-
-  </main>
-</BaseLayout>
+  <div class="grid md:grid-cols-3 gap-6">
+    {posts.map(post => (
+      <a href={`/blog/${post.slug}/`}
+         class="border rounded-xl p-4 hover:shadow-lg transition">
+        <h2 class="font-semibold text-lg">{post.data.title}</h2>
+        <p class="text-sm text-slate-600 mt-2">
+          {post.data.description}
+        </p>
+      </a>
+    ))}
+  </div>
+</section>
