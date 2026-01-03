@@ -2,51 +2,52 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
+// Fetch all published posts
 const posts = (await getCollection("blog"))
-  .filter(p => !p.data.draft)
+  .filter(post => !post.data.draft)
   .sort((a, b) => b.data.pubDate - a.data.pubDate);
 
+// Sections
 const heroPost = posts[0];
 const featuredPosts = posts.slice(1, 4);
-const latestPosts = posts.slice(4, 12);
+const latestPosts = posts.slice(4, 14);
 ---
 
 <BaseLayout
-  title="AI, Automation & Technology Magazine"
-  description="Latest insights, guides, and tutorials on AI, automation, productivity tools, and modern technology."
+  title="AI, Automation & Technology Blog"
+  description="Clear, practical guides on AI, automation, n8n workflows, productivity tools, and modern technology."
 >
   <main class="container">
 
-    <!-- HERO FEATURE -->
+    <!-- HERO ARTICLE -->
     {heroPost && (
       <section>
         <h1>{heroPost.data.title}</h1>
         <p>{heroPost.data.description}</p>
-        <a href={`/blog/${heroPost.slug}/`}>
-          Read full article →
-        </a>
+        <p>
+          <a href={`/blog/${heroPost.slug}/`}>
+            Read full article →
+          </a>
+        </p>
       </section>
     )}
 
-    <!-- FEATURED GRID -->
-    <section>
-      <h2>Featured</h2>
-      <ul>
-        {featuredPosts.map(post => (
-          <li>
-            <a href={`/blog/${post.slug}/`}>
-              <strong>{post.data.title}</strong>
-            </a>
-            <p>{post.data.description}</p>
-          </li>
-        ))}
-      </ul>
-    </section>
-
-    <!-- ADSENSE SAFE SLOT (ENABLE AFTER APPROVAL ONLY) -->
-    {/*
-    <AdSlot />
-    */}
+    <!-- FEATURED ARTICLES -->
+    {featuredPosts.length > 0 && (
+      <section>
+        <h2>Featured Articles</h2>
+        <ul>
+          {featuredPosts.map(post => (
+            <li>
+              <a href={`/blog/${post.slug}/`}>
+                <strong>{post.data.title}</strong>
+              </a>
+              <p>{post.data.description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
 
     <!-- LATEST ARTICLES -->
     <section>
@@ -62,24 +63,13 @@ const latestPosts = posts.slice(4, 12);
       </ul>
     </section>
 
-    <!-- TOPICS / SECTIONS -->
+    <!-- TRUST / EDITORIAL -->
     <section>
-      <h2>Explore Topics</h2>
-      <ul>
-        <li><a href="/blog/ai-automation-guide/">AI Automation</a></li>
-        <li><a href="/blog/n8n-ai-workflows/">n8n Workflows</a></li>
-        <li><a href="/blog/best-ai-tools/">AI Tools</a></li>
-        <li><a href="/blog/productivity/">Productivity</a></li>
-      </ul>
-    </section>
-
-    <!-- TRUST BLOCK (CRITICAL FOR ADSENSE) -->
-    <section>
-      <h2>Editorial Standards</h2>
+      <h2>About This Blog</h2>
       <p>
-        This publication focuses on educational and informational content.
-        Articles are reviewed for clarity, accuracy, and real-world relevance.
-        We prioritize reader value over hype or promotional claims.
+        This website publishes educational and informational content focused on
+        artificial intelligence, automation, and technology. Articles are written
+        to be clear, practical, and useful for real-world applications.
       </p>
     </section>
 
